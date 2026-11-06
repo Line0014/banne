@@ -1,0 +1,116 @@
+@import url(./normalize.css) layer(normalize);
+
+:root {
+  --green: #36bf7f;
+  --dark: hsl(220 20% 12%);
+  --white: #ffffff;
+  --font-main: Roboto, sans-serif;
+
+  /* banner settings, changed by modifier classes */
+  --banner-height: 22rem;
+  --banner-y: center;
+  --banner-x: flex-start;
+  --banner-text: left;
+}
+
+@layer base {
+  body {
+    margin: 0;
+    font-family: var(--font-main);
+    color: var(--dark);
+  }
+}
+
+@layer components {
+  /* banner */
+  .banner {
+    display: flex;
+    align-items: var(--banner-y);
+    min-height: var(--banner-height);
+    padding: 3rem 0;
+    color: var(--white);
+    /* top layer: dark gradient for readability, bottom layer: the image */
+    background-image:
+      linear-gradient(
+        to right,
+        hsl(220 30% 10% / 0.85),
+        hsl(220 30% 10% / 0.4)
+      ),
+      url("../img/banner.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 70rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+    display: flex;
+    justify-content: var(--banner-x);
+  }
+
+  .banner__content {
+    display: flex;
+    flex-direction: column;
+    align-items: var(--banner-x);
+    max-width: 35em;
+    text-align: var(--banner-text);
+  }
+
+  .banner__title {
+    margin: 0 0 1rem;
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .banner__text {
+    margin: 0 0 1.5rem;
+    line-height: 1.6;
+  }
+
+  /* banner modifiers: they only change the variables */
+  .banner--large {
+    --banner-height: 36rem;
+  }
+  .banner--top {
+    --banner-y: flex-start;
+  }
+  .banner--bottom {
+    --banner-y: flex-end;
+  }
+  .banner--center {
+    --banner-x: center;
+    --banner-text: center;
+  }
+  .banner--right {
+    --banner-x: flex-end;
+    --banner-text: right;
+  }
+
+  /* buttons */
+  .btn {
+    display: inline-block;
+    font-family: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+
+  .btn--secondary {
+    background-color: var(--green);
+    color: var(--dark);
+  }
+
+  .btn--secondary:hover {
+    border-color: var(--white);
+  }
+
+  .btn--large {
+    padding: 0.9rem 2rem;
+    font-size: 1.125rem;
+  }
+}
